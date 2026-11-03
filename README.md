@@ -6,6 +6,14 @@ The thermal goggles (T-7, including the GPNVG-18 Thermal) also work in the scope
 
 **What the plugin does:** While the goggles are on, it also switches thermal on for the scope camera, with exactly the goggles' values (`WaermebildVisier.cs`), and lifts the lens block (`LinseUndPunkt.cs`). Real thermal scopes (FLIR, Echo1) are still handled by the game itself.
 
+## How this mod was made (AI disclosure)
+
+This mod was **programmed by Claude**, an AI assistant made by Anthropic.
+**Kaan was the tester**: Kaan has no programming background, played with the mod
+on SPT 4.1.6, reported what went wrong, and Claude fixed it. No human programmer
+has reviewed the code. It is open source so anyone can check it — if you find a
+bug, please open an [issue](https://github.com/Kaanori/spt-waermebildvisier/issues).
+
 ## Requirements
 
 - SPT 4.1.6 (EFT 0.16.9). BepInEx ships with SPT.
