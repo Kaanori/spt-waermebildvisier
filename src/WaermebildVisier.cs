@@ -28,12 +28,13 @@ using HarmonyLib;
 
 namespace WaermebildVisier
 {
-	[BepInPlugin("com.kaan.waermebildvisier", "WaermebildVisier", "1.1.0")]
+	[BepInPlugin("com.kaan.waermebildvisier", "WaermebildVisier", "1.2.0")]
 	public class WaermebildVisierPlugin : BaseUnityPlugin
 	{
 		internal static ManualLogSource Log;
 		internal static ConfigEntry<bool> Aktiv;
 		internal static ConfigEntry<bool> GlasAusblenden;
+		internal static ConfigEntry<bool> ZaunReparieren;
 
 		private void Awake()
 		{
@@ -42,10 +43,14 @@ namespace WaermebildVisier
 				"Waermebildbrille mit allen Visieren nutzen: Leuchtpunkt von Rotpunkt/Holo und Waermebild im Zielfernrohr.");
 			GlasAusblenden = Config.Bind("Allgemein", "Glas ausblenden", true,
 				"Bei Waermebild das Glas von Rotpunkt-/Holovisieren ausblenden, damit man hindurchsieht.");
+			ZaunReparieren = Config.Bind("Allgemein", "Fix see-through fences in thermal (game shader bug)", true,
+				"Chain-link fences (e.g. blue construction fence on Factory) turn into solid walls in thermal vision because of a game shader bug. While a thermal camera renders, affected materials get a correct cutout shader.");
 			gameObject.AddComponent<GlasAusblender>();
 			Harmony harmony = new Harmony("com.kaan.waermebildvisier");
 			harmony.PatchAll(typeof(VisierKameraPatch));
 			harmony.PatchAll(typeof(LinseUndPunktPatch));
+			harmony.PatchAll(typeof(ZaunThermalPatch));
+			ZaunFix.Starten();
 			Log.LogInfo("WaermebildVisier geladen");
 		}
 	}

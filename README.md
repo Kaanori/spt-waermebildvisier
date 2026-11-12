@@ -1,6 +1,6 @@
 # WaermebildVisier (thermal in scope)
 
-The thermal goggles (T-7, including the GPNVG-18 Thermal) also work in the scope.
+The thermal goggles (T-7, including the [GPNVG-18 Thermal](https://github.com/Kaanori/spt-gpnvg18thermal)) also work in the scope.
 
 **Why you see nothing otherwise:** A magnifying scope draws its image with its own small camera. That camera only gets thermal vision if the scope itself is a thermal scope. The goggles only sit on the main camera. In addition, the lens image is not drawn at all when thermal is active.
 
@@ -20,7 +20,7 @@ bug, please open an [issue](https://github.com/Kaanori/spt-waermebildvisier/issu
 
 ## Installation
 
-1. Download `WaermebildVisier-1.1.0.zip` from the [Releases](https://github.com/Kaanori/spt-waermebildvisier/releases) page.
+1. Download `WaermebildVisier-1.2.0.zip` from the [Releases](https://github.com/Kaanori/spt-waermebildvisier/releases) page.
 2. Extract it **into your SPT game folder** (the folder that contains `EscapeFromTarkov.exe`).
    The ZIP already has the right layout; the mod ends up in `BepInEx/plugins/`.
    On Windows, make sure "Extract All" does not add an extra subfolder.
@@ -34,6 +34,7 @@ Delete the mod's files from `BepInEx/plugins/` (settings: `BepInEx/config/` for 
 
 - **Aktiv** (active): on/off
 - **Glas ausblenden** (hide glass): hide the reflective scope glass (`GlasAusblender.cs`)
+- **Fix see-through fences in thermal (game shader bug)**: chain-link fences (blue construction fence on Factory, Cardinal fence, many LOD3 models) render as solid walls in thermal because the game shader sets alpha to 1 before the alpha test. While a thermal camera (goggles or scope) renders, the affected materials get the correct cutout shader and are switched back right after (`ZaunFix.cs`). On by default.
 
 ## Building from source
 
@@ -57,4 +58,4 @@ Bugs and questions: [GitHub issues](https://github.com/Kaanori/spt-waermebildvis
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT — see [LICENSE](https://github.com/Kaanori/spt-waermebildvisier/blob/main/LICENSE).
